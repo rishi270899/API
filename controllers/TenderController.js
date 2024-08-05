@@ -1,8 +1,10 @@
 const { status } = require("express/lib/response");
 const TenderModel = require("../models/tender");
+const { startSucceeded } = require("init");
 
 class TenderController {
   static Tender_insert = async (req, res) => {
+    // console.log(req.body);
     try {
       const { name, description, start_time, end_time, buffer_time } = req.body;
       const result = new TenderModel(req.body);
@@ -63,6 +65,41 @@ class TenderController {
       res.status(400).json({ status: "failed", message: error.message });
     }
   };
+
+  // update tender
+  static updateTender = async(req,res) => {
+    try{
+      const {name , Description, start_time,end_time,buffer_time} = req.body
+      const data = await TenderModel.findByIdAndUpdate(req.params.id,{
+        name : name ,
+        Description : Description,
+        start_time : start_time,
+        end_time : end_time,
+        buffer_time : buffer_time
+      })
+      res.status(200).json({msg:"user update successfully"})
+    } catch(error){
+      console.log(error)
+    }
+  }
+
+
+
+  // static updateTender = async (req, res) => {
+  //   try {
+  //     const { name, email, password, city } = req.body;
+  //     const data = await TenderModel.findByIdAndUpdate(req.params.id, {
+  //       name: name,
+  //       Description: Description,
+  //       start_time: start_time,
+  //       end_time: end_time,
+  //       buffer_time: buffer_time,
+  //     });
+  //     res.status(200).json(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 }
 
 module.exports = TenderController;

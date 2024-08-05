@@ -27,7 +27,8 @@ route.post("/registerUser", categoryController.registerUser);
 //tendercontroller
 route.post("/Tender_insert", TenderController.Tender_insert);
 route.get("/getTender",TenderController.getTender);
-route.post("/getTenderById/:id",TenderController.getTenderById);
-route.post("/deleteTender/:id",TenderController.deleteTender)
+route.get("/getTenderById/:id",TenderController.getTenderById);
+route.delete("/deleteTender/:id",TenderController.deleteTender)
+route.post("/updateTender/:id",TenderController.updateTender)
 
 module.exports = route;

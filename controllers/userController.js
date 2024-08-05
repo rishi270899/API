@@ -250,6 +250,7 @@ class UserController {
     }
   };
 
+
   static getSingleUser = async (req, res) => {
     try {
       const data = await UserModel.findById(req.params.id);
@@ -287,6 +288,7 @@ class UserController {
     }
   };
 
+  
   //catagory controller model
 }
 
